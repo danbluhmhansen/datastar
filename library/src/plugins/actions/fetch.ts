@@ -123,7 +123,7 @@ const createHttpMethod = (
             payload !== undefined ? payload : filtered({ include, exclude })
           stopPeeking()
           const body = JSON.stringify(payload)
-          if (method === 'GET') {
+          if (method === 'GET' || method === 'DELETE') {
             queryParams.set('datastar', body)
           } else {
             req.body = body
@@ -172,7 +172,7 @@ const createHttpMethod = (
           }
 
           const formParams = new URLSearchParams(formData as any)
-          if (method === 'GET') {
+          if (method === 'GET' || method === 'DELETE') {
             for (const [key, value] of formParams) {
               queryParams.append(key, value)
             }
